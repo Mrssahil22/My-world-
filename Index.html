@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Forever Us ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff8fb1,#ffd6e7);
+overflow:hidden;
+}
+
+.container{
+width:90%;
+max-width:700px;
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+text-align:center;
+position:relative;
+z-index:10;
+}
+
+h1{
+color:#e91e63;
+font-size:35px;
+margin-bottom:20px;
+}
+
+p{
+font-size:20px;
+color:#555;
+line-height:1.8;
+margin-top:20px;
+}
+
+button{
+margin-top:30px;
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:15px;
+background:#e91e63;
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+background:#d81b60;
+}
+
+.heart{
+font-size:90px;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.25);}
+100%{transform:scale(1);}
+
+}
+
+.hide{
+display:none;
+}
+
+#typing{
+min-height:170px;
+font-size:22px;
+line-height:2;
+color:#444;
+}
+
+.petal{
+position:fixed;
+top:-30px;
+font-size:22px;
+animation:fall linear infinite;
+pointer-events:none;
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-20px) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+
+}
+.heartFly{
+  position: fixed;
+  bottom: -20px;
+  font-size: 25px;
+  animation: fly 6s linear forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fly{
+  0%{
+    transform: translateY(0) scale(1);
+    opacity:1;
+  }
+  100%{
+    transform: translateY(-120vh) scale(1.8) rotate(360deg);
+    opacity:0;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="page1">
+
+<div class="heart">❤️</div>
+
+<h1>Welcome My Queen Aiman ❤️</h1>
+
+<p>
+
+Every heartbeat of mine whispers your name...
+
+</p>
+
+<button id="startBtn">
+
+Start Our Journey ❤️
+
+</button>
+
+</div>
+
+<div id="page2" class="hide">
+
+<h1>My Beautiful Wife ❤️</h1>
+
+<p id="typing"></p>
+<button id="nextBtn">Continue ❤️</button>
+</div>
+
+</div>
+<div id="page3" class="hide">
+
+<h1>💌 A Letter For My Queen 💌</h1>
+
+<p>
+
+My Dearest Aiman ❤️<br><br>
+
+I Love You Forever ❤️
+
+</p>
+
+<button id="finalBtn">Final Surprise ❤️</button>
+
+</div>
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+ const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const startBtn = document.getElementById("startBtn");
+const typing = document.getElementById("typing");
+const music = document.getElementById("music");
+
+const text = `My Dearest Aiman ❤️
+
+You are the most beautiful blessing in my life.
+
+Every heartbeat of mine whispers your name.
+
+Thank you for making my world brighter.
+
+I Love You Forever ❤️
+
+— Abdullah Sahil`;
+
+startBtn.onclick = () => {
+
+page1.classList.add("hide");
+page2.classList.remove("hide");
+
+music.play().catch(()=>{});
+
+typeText();
+
+createPetals();
+
+};
+
+let i = 0;
+
+function typeText(){
+
+if(i < text.length){
+
+typing.innerHTML += text.charAt(i);
+
+i++;
+
+setTimeout(typeText,40);
+
+}
+
+}
+
+function createPetals(){
+
+setInterval(()=>{
+
+const petal=document.createElement("div");
+
+petal.className="petal";
+
+petal.innerHTML="🌹";
+
+petal.style.left=Math.random()*100+"vw";
+
+petal.style.animationDuration=(Math.random()*3+4)+"s";
+
+document.body.appendChild(petal);
+
+setTimeout(()=>{
+
+petal.remove();
+
+},7000);
+
+},300);
+
+}
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heartFly";
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+
+  }, 400);
+}
+
+createHearts();
+</script>
+
+</body>
+</html>
